@@ -15,144 +15,103 @@
     --red: #ff4444; --yellow: #ffc107; --orange: #ff6d00;
     --text: #e8eaf0; --muted: #6b7a99; --dim: #3d4f6e;
   }
-  html, body {
-    height: 100%; width: 100%;
-    background: var(--bg); color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-    overscroll-behavior: none; overflow: hidden;
-  }
-  /* ── LAYOUT ── */
-  .app-shell { display: flex; flex-direction: column; height: 100vh; height: 100svh; width: 100vw; overflow: hidden; }
-  .header {
-    background: var(--bg); border-bottom: 1px solid var(--border);
-    padding: 18px 32px 16px;
-    padding-top: calc(18px + env(safe-area-inset-top));
-    display: flex; align-items: center; justify-content: space-between;
-    flex-shrink: 0;
-  }
-  .header-title { font-size: 26px; font-weight: 800; color: var(--accent); letter-spacing: -0.5px; }
-  .header-sub { font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
-  .header-badges { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
-  /* ── SIDEBAR + CONTENT ── */
-  .main { display: flex; flex: 1; overflow: hidden; }
-  .sidebar {
-    width: 220px; flex-shrink: 0;
-    background: var(--surface); border-right: 1px solid var(--border);
-    display: flex; flex-direction: column;
-    padding: 20px 0;
-    padding-bottom: calc(20px + env(safe-area-inset-bottom));
-    overflow-y: auto;
-  }
-  .sidebar-item {
-    display: flex; align-items: center; gap: 14px;
-    padding: 15px 24px; cursor: pointer; border: none;
-    background: none; width: 100%; text-align: left;
-    border-left: 3px solid transparent;
-    transition: all 0.15s;
-  }
-  .sidebar-item.active {
-    background: var(--accent)11;
-    border-left-color: var(--accent);
-  }
-  .sidebar-item .si-icon { font-size: 20px; width: 24px; text-align: center; }
-  .sidebar-item .si-label { font-size: 15px; font-weight: 600; color: var(--muted); letter-spacing: 0.3px; }
-  .sidebar-item.active .si-label { color: var(--accent); }
-  .content-area {
-    flex: 1; overflow-y: auto; padding: 28px 32px;
-    padding-bottom: calc(28px + env(safe-area-inset-bottom));
-  }
-  /* ── GRID ── */
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-  .col-span2 { grid-column: span 2; }
-  /* ── CARDS ── */
-  .card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 22px; margin-bottom: 18px;
-  }
-  .card-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 18px;
-  }
-  .card-title { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
-  /* ── BADGE ── */
-  .badge { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
-  /* ── ROW ── */
-  .row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
-  .row:last-child { border-bottom: none; }
-  .row-label { font-size: 14px; color: var(--muted); }
-  .row-value { font-size: 15px; font-weight: 600; text-align: right; }
-  .row-sub { font-size: 12px; color: var(--muted); text-align: right; }
-  /* ── SIGNAL ── */
-  .signal-row { display: flex; align-items: center; gap: 14px; padding: 11px 0; }
-  .signal-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-  .signal-dot.on { background: var(--green); box-shadow: 0 0 8px var(--green); }
-  .signal-dot.off { background: var(--dim); }
-  .signal-label { font-size: 15px; }
-  .signal-label.on { color: var(--text); font-weight: 600; }
-  .signal-label.off { color: var(--muted); }
-  .signal-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
-  /* ── INPUT ── */
-  .field { margin-bottom: 14px; }
-  .field-label { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; display: block; }
-  .field-wrap { display: flex; align-items: center; background: var(--surfaceAlt); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-  .field-prefix { color: var(--muted); padding: 0 10px; font-size: 14px; }
-  .field-wrap input { background: transparent; border: none; outline: none; color: var(--text); font-size: 16px; padding: 13px 14px; flex: 1; font-family: inherit; }
-  /* ── BUTTON ── */
-  .btn { border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-family: inherit; letter-spacing: 0.3px; -webkit-appearance: none; }
-  .btn-full { padding: 15px 20px; font-size: 16px; width: 100%; margin-top: 10px; }
-  .btn-sm { padding: 9px 16px; font-size: 13px; }
-  /* ── ALERT ── */
-  .alert { border-radius: 8px; padding: 12px 14px; margin: 12px 0; }
-  /* ── BAND ── */
-  .band { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-radius: 8px; margin-bottom: 6px; border: 1px solid transparent; }
-  .band-label { font-size: 13px; }
-  .band-value { font-size: 14px; font-weight: 700; }
-  /* ── BLOTTER ── */
-  .blotter { width: 100%; border-collapse: collapse; font-size: 14px; }
-  .blotter th { color: var(--muted); font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--border); font-size: 11px; }
-  .blotter td { padding: 11px 8px; border-bottom: 1px solid #1e2d4522; vertical-align: middle; }
-  .blotter tr:nth-child(even) td { background: #1a223644; }
-  .blotter .right { text-align: right; }
-  /* ── INLINE EDIT ── */
-  .inline-input { background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); font-size: 13px; font-family: inherit; padding: 2px 0; outline: none; }
-  /* ── CONFIRM MODAL ── */
-  .modal-overlay { position: fixed; inset: 0; background: #00000088; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; }
-  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; width: 100%; max-width: 420px; }
-  .modal-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 18px; }
-  /* ── PORTFOLIO STATS ── */
-  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
-  .stat-box { background: var(--surfaceAlt); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
-  .stat-label { font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
-  .stat-value { font-size: 24px; font-weight: 800; color: var(--text); }
-  .stat-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
-
-  /* ── CHART ── */
-  .chart-container { position: relative; width: 100%; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); }
-  .chart-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--surface); border-bottom: 1px solid var(--border); }
-  .chart-title { font-size: 13px; font-weight: 700; color: var(--text); letter-spacing: 0.5px; }
-  .lookback-group { display: flex; gap: 6px; }
-  .lb-btn { background: var(--surfaceAlt); border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: 6px 14px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; letter-spacing: 0.5px; transition: all 0.15s; }
-  .lb-btn.active { background: var(--accent)22; border-color: var(--accent); color: var(--accent); }
-  .chart-iframe-wrap { width: 100%; height: 580px; }
-  .chart-iframe-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
-  .chart-note { font-size: 11px; color: var(--muted); padding: 8px 16px 10px; background: var(--surface); border-top: 1px solid var(--border); }
-
-  /* ── LOG ── */
-  .log-section { margin-bottom: 16px; }
-  .log-heading { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-  .log-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
-  .exp-row { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); gap: 8px; }
-  .exp-scenario { font-size: 13px; color: var(--muted); flex: 1; }
-  .exp-total { font-size: 14px; font-weight: 700; color: var(--accent); text-align: right; white-space: nowrap; }
-  /* ── SECTION TITLE ── */
-  .section-title { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin: 20px 0 10px; }
+  html, body { height:100%; width:100%; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;
+    overscroll-behavior:none; overflow:hidden; }
+  .app-shell { display:flex; flex-direction:column; height:100vh; height:100svh; width:100vw; overflow:hidden; }
+  /* HEADER */
+  .header { background:var(--bg); border-bottom:1px solid var(--border);
+    padding:18px 32px 16px; padding-top:calc(18px + env(safe-area-inset-top));
+    display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+  .header-title { font-size:26px; font-weight:800; color:var(--accent); letter-spacing:-0.5px; }
+  .header-sub { font-size:12px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; margin-top:2px; }
+  .header-badges { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+  /* SIDEBAR */
+  .main { display:flex; flex:1; overflow:hidden; }
+  .sidebar { width:220px; flex-shrink:0; background:var(--surface); border-right:1px solid var(--border);
+    display:flex; flex-direction:column; padding:20px 0;
+    padding-bottom:calc(20px + env(safe-area-inset-bottom)); overflow-y:auto; }
+  .sidebar-item { display:flex; align-items:center; gap:14px; padding:15px 24px; cursor:pointer;
+    border:none; background:none; width:100%; text-align:left;
+    border-left:3px solid transparent; transition:all 0.15s; }
+  .sidebar-item.active { background:#00d4ff11; border-left-color:var(--accent); }
+  .sidebar-item .si-icon { font-size:20px; width:24px; text-align:center; }
+  .sidebar-item .si-label { font-size:15px; font-weight:600; color:var(--muted); letter-spacing:0.3px; }
+  .sidebar-item.active .si-label { color:var(--accent); }
+  /* CONTENT */
+  .content-area { flex:1; overflow-y:auto; padding:28px 32px;
+    padding-bottom:calc(28px + env(safe-area-inset-bottom)); }
+  /* GRID */
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  /* CARDS */
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px; margin-bottom:18px; }
+  .card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+  .card-title { font-size:11px; font-weight:700; color:var(--muted); letter-spacing:2px; text-transform:uppercase; }
+  /* BADGE */
+  .badge { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:3px 8px; border-radius:4px; }
+  /* ROW */
+  .row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--border); }
+  .row:last-child { border-bottom:none; }
+  .row-label { font-size:14px; color:var(--muted); }
+  .row-value { font-size:15px; font-weight:600; text-align:right; }
+  .row-sub { font-size:12px; color:var(--muted); text-align:right; }
+  /* SIGNAL */
+  .signal-row { display:flex; align-items:center; gap:14px; padding:11px 0; }
+  .signal-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+  .signal-dot.on { background:var(--green); box-shadow:0 0 8px var(--green); }
+  .signal-dot.off { background:var(--dim); }
+  .signal-label { font-size:15px; }
+  .signal-label.on { color:var(--text); font-weight:600; }
+  .signal-label.off { color:var(--muted); }
+  .signal-sub { font-size:11px; color:var(--muted); margin-top:1px; }
+  /* INPUT */
+  .field { margin-bottom:14px; }
+  .field-label { font-size:10px; font-weight:700; color:var(--muted); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:5px; display:block; }
+  .field-wrap { display:flex; align-items:center; background:var(--surfaceAlt); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  .field-prefix { color:var(--muted); padding:0 10px; font-size:14px; }
+  .field-wrap input { background:transparent; border:none; outline:none; color:var(--text); font-size:16px; padding:13px 14px; flex:1; font-family:inherit; }
+  /* BUTTON */
+  .btn { border:none; border-radius:8px; font-weight:700; cursor:pointer; font-family:inherit; letter-spacing:0.3px; -webkit-appearance:none; }
+  .btn-full { padding:15px 20px; font-size:16px; width:100%; margin-top:10px; }
+  .btn-sm { padding:9px 16px; font-size:13px; }
+  /* ALERT */
+  .alert { border-radius:8px; padding:12px 14px; margin:12px 0; }
+  /* BAND */
+  .band { display:flex; justify-content:space-between; align-items:center; padding:10px 12px; border-radius:8px; margin-bottom:6px; border:1px solid transparent; }
+  .band-label { font-size:13px; }
+  .band-value { font-size:14px; font-weight:700; }
+  /* BLOTTER */
+  .blotter { width:100%; border-collapse:collapse; font-size:13px; }
+  .blotter th { color:var(--muted); font-weight:700; letter-spacing:0.8px; text-transform:uppercase; padding:10px 8px; text-align:left; border-bottom:1px solid var(--border); font-size:10px; white-space:nowrap; }
+  .blotter td { padding:10px 8px; border-bottom:1px solid #1e2d4522; vertical-align:middle; }
+  .blotter tr:nth-child(even) td { background:#1a223644; }
+  .blotter .right { text-align:right; }
+  /* INLINE EDIT */
+  .inline-input { background:transparent; border:none; border-bottom:1px solid var(--border); color:var(--text); font-size:13px; font-family:inherit; padding:2px 0; outline:none; }
+  /* MODAL */
+  .modal-overlay { position:fixed; inset:0; background:#00000088; z-index:200; display:flex; align-items:center; justify-content:center; padding:24px; }
+  .modal { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:28px; width:100%; max-width:460px; }
+  .modal-title { font-size:17px; font-weight:700; color:var(--text); margin-bottom:20px; }
+  /* STAT BOXES */
+  .stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:4px; }
+  .stat-box { background:var(--surfaceAlt); border:1px solid var(--border); border-radius:10px; padding:18px; }
+  .stat-label { font-size:11px; color:var(--muted); font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px; }
+  .stat-value { font-size:22px; font-weight:800; color:var(--text); }
+  .stat-sub { font-size:12px; color:var(--muted); margin-top:4px; }
+  /* LOG */
+  .log-section { margin-bottom:16px; }
+  .log-heading { font-size:14px; font-weight:700; color:var(--text); margin-bottom:4px; }
+  .log-body { font-size:13px; color:var(--muted); line-height:1.7; }
+  .exp-row { display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--border); gap:8px; }
+  .exp-scenario { font-size:13px; color:var(--muted); flex:1; }
+  .exp-total { font-size:14px; font-weight:700; color:var(--accent); text-align:right; white-space:nowrap; }
+  /* TIER1 SPLIT LAYOUT */
+  .t1-split { display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
 </style>
 </head>
 <body>
 <div class="app-shell">
-
-  <!-- Header -->
   <div class="header">
     <div>
       <div class="header-title">LQQ3</div>
@@ -160,39 +119,27 @@
     </div>
     <div class="header-badges" id="headerBadges"></div>
   </div>
-
   <div class="main">
-    <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
-      <button class="sidebar-item active" data-tab="dashboard" onclick="switchTab('dashboard')">
-        <span class="si-icon">📊</span><span class="si-label">Dashboard</span>
-      </button>
-      <button class="sidebar-item" data-tab="market" onclick="switchTab('market')">
-        <span class="si-icon">📈</span><span class="si-label">Market</span>
-      </button>
-      <button class="sidebar-item" data-tab="tier1" onclick="switchTab('tier1')">
-        <span class="si-icon">💰</span><span class="si-label">Tier 1</span>
-      </button>
-      <button class="sidebar-item" data-tab="tier2" onclick="switchTab('tier2')">
-        <span class="si-icon">⚡</span><span class="si-label">Tier 2</span>
-      </button>
-      <button class="sidebar-item" data-tab="tier3" onclick="switchTab('tier3')">
-        <span class="si-icon">🚨</span><span class="si-label">Tier 3</span>
-      </button>
-      <button class="sidebar-item" data-tab="log" onclick="switchTab('log')">
-        <span class="si-icon">📋</span><span class="si-label">Rules</span>
-      </button>
+      <button class="sidebar-item active" data-tab="dashboard" onclick="switchTab('dashboard')"><span class="si-icon">📊</span><span class="si-label">Dashboard</span></button>
+      <button class="sidebar-item" data-tab="market" onclick="switchTab('market')"><span class="si-icon">📈</span><span class="si-label">Market</span></button>
+      <button class="sidebar-item" data-tab="tier1" onclick="switchTab('tier1')"><span class="si-icon">💰</span><span class="si-label">Tier 1</span></button>
+      <button class="sidebar-item" data-tab="tier2" onclick="switchTab('tier2')"><span class="si-icon">⚡</span><span class="si-label">Tier 2</span></button>
+      <button class="sidebar-item" data-tab="tier3" onclick="switchTab('tier3')"><span class="si-icon">🚨</span><span class="si-label">Tier 3</span></button>
+      <button class="sidebar-item" data-tab="log" onclick="switchTab('log')"><span class="si-icon">📋</span><span class="si-label">Rules</span></button>
     </nav>
-
-    <!-- Content -->
     <div class="content-area" id="content"></div>
   </div>
 </div>
 
-<!-- Confirm Trade Modal -->
+<!-- Confirm/Edit Trade Modal -->
 <div class="modal-overlay" id="confirmModal" style="display:none">
   <div class="modal">
-    <div class="modal-title">Confirm Trade</div>
+    <div class="modal-title" id="modalTitle">Confirm Trade</div>
+    <div class="field">
+      <label class="field-label">Trade Date</label>
+      <div class="field-wrap"><input id="confirmDate" type="date"></div>
+    </div>
     <div class="field">
       <label class="field-label">Purchase Price (£)</label>
       <div class="field-wrap"><span class="field-prefix">£</span>
@@ -205,15 +152,16 @@
         <input id="confirmShares" type="number" inputmode="decimal" placeholder="e.g. 68">
       </div>
     </div>
-    <div style="display:flex;gap:10px;margin-top:8px">
-      <button class="btn btn-full" style="background:var(--green);color:#000" onclick="confirmTrade()">Confirm</button>
+    <div id="modalInvested" style="color:var(--muted);font-size:13px;margin:8px 0 14px;min-height:20px"></div>
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <button class="btn btn-full" style="background:var(--green);color:#000" onclick="confirmTrade()">Save Trade</button>
       <button class="btn btn-full" style="background:var(--dim);color:var(--muted)" onclick="closeModal()">Cancel</button>
     </div>
   </div>
 </div>
 
 <script>
-// ── SCHEDULE ────────────────────────────────────────────────────────────────
+// ── SCHEDULE ─────────────────────────────────────────────────────────────────
 const TIER1_SCHEDULE = [
   "2026-07-01","2026-08-03","2026-09-01","2026-10-01","2026-11-02","2026-12-01",
   "2027-01-01","2027-02-01","2027-03-01","2027-04-01","2027-05-03","2027-06-01",
@@ -231,173 +179,217 @@ const TIER1_SCHEDULE = [
 function buildBlotter(amount) {
   const td = new Date().toISOString().slice(0,10);
   return TIER1_SCHEDULE.map(d => ({
-    date: d, amount, price: null, shares: null, status: d < td ? "pending" : "scheduled"
+    date:d, amount, price:null, shares:null, status:d<td?"pending":"scheduled"
   }));
 }
 
 function defaultState() {
   return {
-    tier1: { monthlyAmount: 2500, totalInvested: 0, totalShares: 0, blotter: buildBlotter(2500) },
-    tier2: { notional: 100000, active: false, entryPrice: null, entryDate: null, stopPrice: null, blotter: [] },
-    tier3: { notional: 100000, activeLevel: null, entryPrice: null, entryDate: null, deployedAmount: null, stopPrice: null, blotter: [] },
-    market: { lqq3Price: null, nasdaqDrawdown: null, lqq3Rsi: null, lqq340sma: null, lqq3200sma: null }
+    tier1:{ monthlyAmount:2500, totalInvested:0, totalShares:0, blotter:buildBlotter(2500) },
+    tier2:{ notional:100000, active:false, entryPrice:null, entryDate:null, stopPrice:null, blotter:[] },
+    tier3:{ notional:100000, activeLevel:null, entryPrice:null, entryDate:null, deployedAmount:null, stopPrice:null, blotter:[] },
+    market:{ lqq3Price:null, nasdaqDrawdown:null, lqq3Rsi:null, lqq340sma:null, lqq3200sma:null, lqq3Drawdown:null }
   };
 }
 
 let S;
-try { S = JSON.parse(localStorage.getItem("lqq3_v3")) || defaultState(); } catch { S = defaultState(); }
-let chartLookback = "3Y";
-if (!S.tier1.blotter || !S.tier1.blotter.length) S.tier1.blotter = buildBlotter(S.tier1.monthlyAmount);
-if (S.tier1.totalShares == null) S.tier1.totalShares = 0;
-// Backfill shares field on old blotter entries
-S.tier1.blotter.forEach(b => { if (b.shares == null) b.shares = null; });
+try { S=JSON.parse(localStorage.getItem("lqq3_v4"))||defaultState(); } catch { S=defaultState(); }
+if (!S.tier1.blotter||!S.tier1.blotter.length) S.tier1.blotter=buildBlotter(S.tier1.monthlyAmount);
+if (S.tier1.totalShares==null) S.tier1.totalShares=0;
+if (S.market.lqq3Drawdown===undefined) S.market.lqq3Drawdown=null;
+S.tier1.blotter.forEach(b=>{ if(b.shares==null) b.shares=null; });
 
-function save() { try { localStorage.setItem("lqq3_v3", JSON.stringify(S)); } catch {} }
+function save() { try { localStorage.setItem("lqq3_v4",JSON.stringify(S)); } catch {} }
 
-// ── HELPERS ─────────────────────────────────────────────────────────────────
-const fmt  = n => n == null ? "—" : "£" + Number(n).toLocaleString("en-GB", {minimumFractionDigits:0, maximumFractionDigits:2});
-const fmt2 = n => n == null ? "—" : "£" + Number(n).toFixed(2);
-const fmtN = n => n == null ? "—" : Number(n).toLocaleString("en-GB", {minimumFractionDigits:0, maximumFractionDigits:4});
-const fmtP = n => n == null ? "—" : (n>0?"+":"")+n.toFixed(2)+"%";
-const fmtD = d => d ? new Date(d+"T12:00:00").toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}) : "—";
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+const fmt  = n => n==null?"—":"£"+Number(n).toLocaleString("en-GB",{minimumFractionDigits:0,maximumFractionDigits:2});
+const fmt2 = n => n==null?"—":"£"+Number(n).toFixed(2);
+const fmtN = n => n==null?"—":Number(n).toLocaleString("en-GB",{minimumFractionDigits:0,maximumFractionDigits:4});
+const fmtP = n => n==null?"—":(n>0?"+":"")+n.toFixed(2)+"%";
+const fmtD = d => d?new Date(d+"T12:00:00").toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}):"—";
 const today = () => new Date().toISOString().slice(0,10);
 const m = () => S.market;
 
-function badge(text, color) {
+function badge(text,color) {
   return `<span class="badge" style="background:${color}22;color:${color};border:1px solid ${color}44">${text}</span>`;
 }
-function card(title, badgeHtml, accentColor, body) {
-  const style = accentColor ? `border-color:${accentColor}44;box-shadow:0 0 20px ${accentColor}11` : "";
-  return `<div class="card" style="${style}">
-    <div class="card-header"><span class="card-title">${title}</span>${badgeHtml||""}</div>${body}</div>`;
+function card(title,badgeHtml,accentColor,body) {
+  const style=accentColor?`border-color:${accentColor}44;box-shadow:0 0 20px ${accentColor}11`:"";
+  return `<div class="card" style="${style}"><div class="card-header"><span class="card-title">${title}</span>${badgeHtml||""}</div>${body}</div>`;
 }
-function row(label, value, color, sub) {
+function row(label,value,color,sub) {
   return `<div class="row"><span class="row-label">${label}</span>
     <div><div class="row-value" style="color:${color||"var(--text)"}">${value}</div>${sub?`<div class="row-sub">${sub}</div>`:""}</div></div>`;
 }
-function signalLight(on, label, sub) {
+function signalLight(on,label,sub) {
   return `<div class="signal-row"><div class="signal-dot ${on?"on":"off"}"></div>
     <div><div class="signal-label ${on?"on":"off"}">${label}</div>${sub?`<div class="signal-sub">${sub}</div>`:""}</div></div>`;
 }
-function btn(id, text, color, full, disabled) {
-  const cls = full ? "btn btn-full" : "btn btn-sm";
+function btn(id,text,color,full,disabled) {
+  const cls=full?"btn btn-full":"btn btn-sm";
   return `<button id="${id}" class="${cls}" style="background:${disabled?"var(--dim)":"var(--"+color+")"};color:${disabled?"var(--muted)":"#000"}" ${disabled?"disabled":""}>${text}</button>`;
 }
-function field(id, label, value, prefix) {
+function field(id,label,value,prefix) {
   return `<div class="field"><label class="field-label">${label}</label>
     <div class="field-wrap" style="position:relative">
       ${prefix?`<span class="field-prefix">${prefix}</span>`:""}
-      <input id="${id}" type="number" value="${value??""}"
-        inputmode="decimal"
-        style="padding-right:64px"
-        onblur="updateMarket('${id}',this.value)"
-        onkeydown="if(event.key==='Enter'){this.blur()}">
+      <input id="${id}" type="number" value="${value??""}" inputmode="decimal" style="padding-right:64px"
+        onblur="updateMarket('${id}',this.value)" onkeydown="if(event.key==='Enter'){this.blur()}">
       <button onclick="updateMarket('${id}',document.getElementById('${id}').value);document.getElementById('${id}').blur()"
-        style="position:absolute;right:6px;top:50%;transform:translateY(-50%);background:var(--accent);color:#000;border:none;border-radius:6px;padding:6px 11px;font-size:11px;font-weight:800;cursor:pointer;letter-spacing:0.5px;white-space:nowrap">
-        SET
-      </button>
+        style="position:absolute;right:6px;top:50%;transform:translateY(-50%);background:var(--accent);color:#000;border:none;border-radius:6px;padding:6px 11px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap">SET</button>
     </div></div>`;
 }
 
 // ── SIGNALS ──────────────────────────────────────────────────────────────────
 function signals() {
-  const mk = S.market;
-  const rsiBelow30  = mk.lqq3Rsi    != null && mk.lqq3Rsi < 30;
-  const above40sma  = mk.lqq3Price  != null && mk.lqq340sma  != null && mk.lqq3Price > mk.lqq340sma;
-  const below200sma = mk.lqq3Price  != null && mk.lqq3200sma != null && mk.lqq3Price < mk.lqq3200sma;
-  const t2signal    = rsiBelow30 && above40sma;
-  const qdd         = mk.nasdaqDrawdown || 0;
-  const t3level     = qdd>=35?"35%+":qdd>=26?"26–35%":qdd>=15?"15–25%":null;
-  const t3deploy    = qdd>=35?100000:qdd>=26?75000:qdd>=15?50000:null;
-  const t2pct = S.tier2.entryPrice && mk.lqq3Price ? ((mk.lqq3Price-S.tier2.entryPrice)/S.tier2.entryPrice)*100 : null;
-  const t3pct = S.tier3.entryPrice && mk.lqq3Price ? ((mk.lqq3Price-S.tier3.entryPrice)/S.tier3.entryPrice)*100 : null;
-  return {
-    rsiBelow30, above40sma, below200sma, t2signal, qdd, t3level, t3deploy, t2pct, t3pct,
-    t2stopHit: t2pct!=null&&t2pct<=-40, t2smaHit: below200sma&&S.tier2.active,
-    t3stopHit: t3pct!=null&&t3pct<=-40, t3smaHit: below200sma&&!!S.tier3.activeLevel,
-  };
+  const mk=S.market;
+  const rsiBelow30 = mk.lqq3Rsi!=null&&mk.lqq3Rsi<30;
+  const above40sma = mk.lqq3Price!=null&&mk.lqq340sma!=null&&mk.lqq3Price>mk.lqq340sma;
+  const below200sma= mk.lqq3Price!=null&&mk.lqq3200sma!=null&&mk.lqq3Price<mk.lqq3200sma;
+  const t2signal   = rsiBelow30&&above40sma;
+  const qdd        = mk.nasdaqDrawdown||0;
+  const t3level    = qdd>=35?"35%+":qdd>=26?"26–35%":qdd>=15?"15–25%":null;
+  const t3deploy   = qdd>=35?100000:qdd>=26?75000:qdd>=15?50000:null;
+  const t2pct = S.tier2.entryPrice&&mk.lqq3Price?((mk.lqq3Price-S.tier2.entryPrice)/S.tier2.entryPrice)*100:null;
+  const t3pct = S.tier3.entryPrice&&mk.lqq3Price?((mk.lqq3Price-S.tier3.entryPrice)/S.tier3.entryPrice)*100:null;
+  return { rsiBelow30,above40sma,below200sma,t2signal,qdd,t3level,t3deploy,t2pct,t3pct,
+    t2stopHit:t2pct!=null&&t2pct<=-40, t2smaHit:below200sma&&S.tier2.active,
+    t3stopHit:t3pct!=null&&t3pct<=-40, t3smaHit:below200sma&&!!S.tier3.activeLevel };
 }
 
-// ── PORTFOLIO CALCS ──────────────────────────────────────────────────────────
+// ── PORTFOLIO ────────────────────────────────────────────────────────────────
 function portfolioStats() {
-  const price = m().lqq3Price;
-  const invested = S.tier1.totalInvested;
-  const shares   = S.tier1.totalShares;
-  const totalValue = (price && shares) ? price * shares : null;
-  const gainLoss   = (totalValue != null && invested > 0) ? totalValue - invested : null;
-  const gainLossPct= (gainLoss != null && invested > 0)  ? (gainLoss/invested)*100 : null;
-  return { invested, shares, totalValue, gainLoss, gainLossPct };
+  const price=m().lqq3Price;
+  const invested=S.tier1.totalInvested;
+  const shares=S.tier1.totalShares;
+  const totalValue=(price&&shares)?price*shares:null;
+  const gainLoss=(totalValue!=null&&invested>0)?totalValue-invested:null;
+  const gainLossPct=(gainLoss!=null&&invested>0)?(gainLoss/invested)*100:null;
+  return { invested,shares,totalValue,gainLoss,gainLossPct };
 }
 
-// ── CONFIRM MODAL ────────────────────────────────────────────────────────────
-let pendingConfirmDate = null;
+function recalcTotals() {
+  const ex=S.tier1.blotter.filter(b=>b.status==="executed");
+  S.tier1.totalInvested=ex.reduce((a,b)=>a+((b.price&&b.shares)?b.price*b.shares:0),0);
+  S.tier1.totalShares=ex.reduce((a,b)=>a+(b.shares||0),0);
+}
+
+// ── MODAL ────────────────────────────────────────────────────────────────────
+let pendingConfirmDate=null;
+let editingIdx=null;
 
 function openConfirmModal(date) {
-  pendingConfirmDate = date;
-  document.getElementById("confirmPrice").value  = m().lqq3Price ?? "";
-  document.getElementById("confirmShares").value = "";
-  document.getElementById("confirmModal").style.display = "flex";
+  pendingConfirmDate=date; editingIdx=null;
+  document.getElementById("modalTitle").textContent="Confirm Trade";
+  document.getElementById("confirmDate").value=date;
+  document.getElementById("confirmPrice").value=m().lqq3Price??"";
+  document.getElementById("confirmShares").value="";
+  document.getElementById("modalInvested").textContent="";
+  document.getElementById("confirmModal").style.display="flex";
+  document.getElementById("confirmPrice").oninput=updateModalCalc;
+  document.getElementById("confirmShares").oninput=updateModalCalc;
 }
+
+function openEditModal(idx) {
+  editingIdx=idx; pendingConfirmDate=null;
+  const b=S.tier1.blotter[idx];
+  document.getElementById("modalTitle").textContent="Edit Trade";
+  document.getElementById("confirmDate").value=b.date;
+  document.getElementById("confirmPrice").value=b.price??"";
+  document.getElementById("confirmShares").value=b.shares??"";
+  updateModalCalc();
+  document.getElementById("confirmModal").style.display="flex";
+  document.getElementById("confirmPrice").oninput=updateModalCalc;
+  document.getElementById("confirmShares").oninput=updateModalCalc;
+}
+
+function updateModalCalc() {
+  const p=parseFloat(document.getElementById("confirmPrice").value);
+  const s=parseFloat(document.getElementById("confirmShares").value);
+  const el=document.getElementById("modalInvested");
+  if(p&&s) el.textContent=`Invested: ${fmt2(p*s)} (${fmtN(s)} shares @ ${fmt2(p)})`;
+  else el.textContent="";
+}
+
 function closeModal() {
-  pendingConfirmDate = null;
-  document.getElementById("confirmModal").style.display = "none";
+  pendingConfirmDate=null; editingIdx=null;
+  document.getElementById("confirmModal").style.display="none";
 }
+
 function confirmTrade() {
-  if (!pendingConfirmDate) return;
-  const price  = parseFloat(document.getElementById("confirmPrice").value);
-  const shares = parseFloat(document.getElementById("confirmShares").value);
-  if (!price || !shares) { alert("Please enter both price and number of shares."); return; }
-  const idx = S.tier1.blotter.findIndex(b => b.date === pendingConfirmDate && b.status !== "executed");
-  if (idx < 0) return;
-  S.tier1.blotter[idx].status = "executed";
-  S.tier1.blotter[idx].price  = price;
-  S.tier1.blotter[idx].shares = shares;
-  S.tier1.totalInvested = S.tier1.blotter.filter(b=>b.status==="executed").reduce((a,b)=>a+b.amount, 0);
-  S.tier1.totalShares   = S.tier1.blotter.filter(b=>b.status==="executed").reduce((a,b)=>a+(b.shares||0), 0);
-  closeModal();
-  save(); render();
+  const price=parseFloat(document.getElementById("confirmPrice").value);
+  const shares=parseFloat(document.getElementById("confirmShares").value);
+  const date=document.getElementById("confirmDate").value;
+  if(!price||!shares) { alert("Please enter both price and number of shares."); return; }
+
+  if(editingIdx!=null) {
+    // Edit existing
+    S.tier1.blotter[editingIdx].price=price;
+    S.tier1.blotter[editingIdx].shares=shares;
+    S.tier1.blotter[editingIdx].date=date;
+    S.tier1.blotter[editingIdx].status="executed";
+  } else {
+    // New confirmation
+    const idx=S.tier1.blotter.findIndex(b=>b.date===pendingConfirmDate&&b.status!=="executed");
+    if(idx<0) return;
+    S.tier1.blotter[idx].status="executed";
+    S.tier1.blotter[idx].price=price;
+    S.tier1.blotter[idx].shares=shares;
+    S.tier1.blotter[idx].date=date;
+  }
+  recalcTotals();
+  closeModal(); save(); render();
 }
 
 // ── TABS ─────────────────────────────────────────────────────────────────────
-let currentTab = "dashboard";
+let currentTab="dashboard";
 function switchTab(tab) {
-  currentTab = tab;
-  document.querySelectorAll(".sidebar-item").forEach(el => el.classList.toggle("active", el.dataset.tab === tab));
+  currentTab=tab;
+  document.querySelectorAll(".sidebar-item").forEach(el=>el.classList.toggle("active",el.dataset.tab===tab));
   render();
 }
 
 // ── RENDER ───────────────────────────────────────────────────────────────────
 function render() {
-  const sig = signals();
-  // Header badges
-  let hb = "";
-  if (sig.t2stopHit||sig.t2smaHit) hb += badge("T2 EXIT","#ff4444");
-  if (sig.t3stopHit||sig.t3smaHit) hb += badge("T3 EXIT","#ff4444");
-  if (sig.t2signal&&!S.tier2.active) hb += badge("T2 SIGNAL","#00e676");
-  if (sig.t3level&&!S.tier3.activeLevel) hb += badge("T3 SIGNAL","#ff6d00");
-  document.getElementById("headerBadges").innerHTML = hb;
-
-  const fns = { dashboard:renderDashboard, market:renderMarket, tier1:renderTier1, tier2:renderTier2, tier3:renderTier3, log:renderLog };
-  document.getElementById("content").innerHTML = (fns[currentTab]||renderDashboard)(sig);
+  const sig=signals();
+  let hb="";
+  if(sig.t2stopHit||sig.t2smaHit) hb+=badge("T2 EXIT","#ff4444");
+  if(sig.t3stopHit||sig.t3smaHit) hb+=badge("T3 EXIT","#ff4444");
+  if(sig.t2signal&&!S.tier2.active) hb+=badge("T2 SIGNAL","#00e676");
+  if(sig.t3level&&!S.tier3.activeLevel) hb+=badge("T3 SIGNAL","#ff6d00");
+  document.getElementById("headerBadges").innerHTML=hb;
+  const fns={dashboard:renderDashboard,market:renderMarket,tier1:renderTier1,tier2:renderTier2,tier3:renderTier3,log:renderLog};
+  document.getElementById("content").innerHTML=(fns[currentTab]||renderDashboard)(sig);
   bindEvents(sig);
 }
 
 // ── DASHBOARD ────────────────────────────────────────────────────────────────
 function renderDashboard(sig) {
-  const mk = m(), qdd = sig.qdd;
-  const ps = portfolioStats();
+  const mk=m(), qdd=sig.qdd, ps=portfolioStats();
+
+  // Market data summary card
+  const lqq3DdColor = mk.lqq3Drawdown!=null?(mk.lqq3Drawdown>=20?"var(--red)":mk.lqq3Drawdown>=10?"var(--orange)":"var(--green)"):"var(--text)";
+  const ndxDdColor  = qdd>=35?"var(--red)":qdd>=15?"var(--orange)":"var(--green)";
+  let mktBody = row("LQQ3 Price", fmt(mk.lqq3Price));
+  mktBody += row("LQQ3 RSI (14)", mk.lqq3Rsi!=null?mk.lqq3Rsi.toString():"—",
+    sig.rsiBelow30?"var(--green)":"var(--text)");
+  mktBody += row("LQQ3 40-day SMA", fmt(mk.lqq340sma));
+  mktBody += row("LQQ3 200-day SMA", fmt(mk.lqq3200sma),
+    sig.below200sma?"var(--red)":"var(--green)");
+  mktBody += row("LQQ3 Drawdown from ATH", mk.lqq3Drawdown!=null?fmtP(-mk.lqq3Drawdown):"—", lqq3DdColor);
+  mktBody += row("Nasdaq 100 Drawdown from ATH", mk.nasdaqDrawdown!=null?fmtP(-mk.nasdaqDrawdown):"—", ndxDdColor);
 
   // Signals
-  let sigBody = signalLight(sig.rsiBelow30,"RSI < 30", mk.lqq3Rsi!=null?`Current: ${mk.lqq3Rsi}`:"Not set");
-  sigBody += signalLight(sig.above40sma,"Price above 40-day SMA", mk.lqq340sma!=null?`SMA: ${fmt(mk.lqq340sma)}`:"Not set");
-  sigBody += signalLight(!sig.below200sma&&mk.lqq3200sma!=null,"Price above 200-day SMA", mk.lqq3200sma!=null?`SMA: ${fmt(mk.lqq3200sma)}`:"Not set");
-  sigBody += `<div style="background:${sig.t2signal?"#00e67611":"var(--surfaceAlt)"};border:1px solid ${sig.t2signal?"#00e67644":"var(--border)"};border-radius:8px;padding:11px 14px;margin-top:12px">
+  let sigBody=signalLight(sig.rsiBelow30,"RSI < 30",mk.lqq3Rsi!=null?`Current: ${mk.lqq3Rsi}`:"Not set");
+  sigBody+=signalLight(sig.above40sma,"Price above 40-day SMA",mk.lqq340sma!=null?`SMA: ${fmt(mk.lqq340sma)}`:"Not set");
+  sigBody+=signalLight(!sig.below200sma&&mk.lqq3200sma!=null,"Price above 200-day SMA",mk.lqq3200sma!=null?`SMA: ${fmt(mk.lqq3200sma)}`:"Not set");
+  sigBody+=`<div style="background:${sig.t2signal?"#00e67611":"var(--surfaceAlt)"};border:1px solid ${sig.t2signal?"#00e67644":"var(--border)"};border-radius:8px;padding:11px 14px;margin-top:12px">
     <span style="color:${sig.t2signal?"var(--green)":"var(--muted)"};font-size:14px;font-weight:700">
       ${sig.t2signal?"✓ Tier 2 entry signal active":"No Tier 2 entry signal"}</span></div>`;
 
-  // Portfolio summary
-  const gainColor = ps.gainLoss==null?"var(--text)":ps.gainLoss>=0?"var(--green)":"var(--red)";
-  let portBody = `<div class="stat-grid">
+  // Portfolio
+  const gainColor=ps.gainLoss==null?"var(--text)":ps.gainLoss>=0?"var(--green)":"var(--red)";
+  let portBody=`<div class="stat-grid">
     <div class="stat-box"><div class="stat-label">Total Invested</div><div class="stat-value">${fmt(ps.invested)}</div></div>
     <div class="stat-box"><div class="stat-label">Shares Held (T1)</div><div class="stat-value">${fmtN(ps.shares)}</div></div>
     <div class="stat-box"><div class="stat-label">Portfolio Value</div><div class="stat-value">${fmt(ps.totalValue)}</div><div class="stat-sub">at ${fmt(mk.lqq3Price)} per share</div></div>
@@ -407,120 +399,89 @@ function renderDashboard(sig) {
   </div>`;
 
   // Exposure
-  const t2a = S.tier2.active, t3a = !!S.tier3.activeLevel;
-  let expBody = row("Tier 2", t2a?fmt(S.tier2.notional):"Inactive", t2a?"var(--accent)":"var(--muted)",
+  const t2a=S.tier2.active, t3a=!!S.tier3.activeLevel;
+  let expBody=row("Tier 2",t2a?fmt(S.tier2.notional):"Inactive",t2a?"var(--accent)":"var(--muted)",
     t2a?`Entry ${fmt(S.tier2.entryPrice)} · Stop ${fmt(S.tier2.stopPrice)}`:null);
-  expBody += row("Tier 3", t3a?fmt(S.tier3.deployedAmount):"Inactive", t3a?"var(--orange)":"var(--muted)",
+  expBody+=row("Tier 3",t3a?fmt(S.tier3.deployedAmount):"Inactive",t3a?"var(--orange)":"var(--muted)",
     t3a?`Level: ${S.tier3.activeLevel} · Entry ${fmt(S.tier3.entryPrice)}`:null);
-  expBody += row("Total active capital", fmt((t2a?S.tier2.notional:0)+(t3a?S.tier3.deployedAmount:0)), "var(--accent)");
+  expBody+=row("Total active capital",fmt((t2a?S.tier2.notional:0)+(t3a?S.tier3.deployedAmount:0)),"var(--accent)");
 
-  // Crisis
-  let bandsHtml = `<div style="margin:12px 0">`;
+  // Crisis bands
+  let bandsHtml=`<div style="margin:12px 0">`;
   [{r:"15–25%",d:"£50,000",a:qdd>=15},{r:"26–35%",d:"£75,000",a:qdd>=26},{r:"35%+",d:"£100,000",a:qdd>=35}].forEach(b=>{
-    bandsHtml += `<div class="band" style="background:${b.a?"#ff6d0011":"var(--surfaceAlt)"};border-color:${b.a?"#ff6d0044":"transparent"}">
+    bandsHtml+=`<div class="band" style="background:${b.a?"#ff6d0011":"var(--surfaceAlt)"};border-color:${b.a?"#ff6d0044":"transparent"}">
       <span class="band-label" style="color:${b.a?"var(--orange)":"var(--muted)"}">${b.r}</span>
       <span class="band-value" style="color:${b.a?"var(--text)":"var(--muted)"}">${b.d}</span></div>`;
   });
-  bandsHtml += `</div>`;
-  let crisisBody = row("Current drawdown", mk.nasdaqDrawdown!=null?fmtP(-mk.nasdaqDrawdown):"—",
-    qdd>=35?"var(--red)":qdd>=15?"var(--orange)":"var(--green)");
-  crisisBody += bandsHtml;
+  bandsHtml+=`</div>`;
+  let crisisBody=row("Nasdaq 100 Drawdown",mk.nasdaqDrawdown!=null?fmtP(-mk.nasdaqDrawdown):"—",ndxDdColor);
+  crisisBody+=bandsHtml;
 
-  return `<div class="grid2">
-    <div>${card("Live Signals","",null,sigBody)}</div>
-    <div>${card("Tier 1 Portfolio","",null,portBody)}</div>
-    <div>${card("Active Exposure","",null,expBody)}</div>
-    <div>${card("Nasdaq 100 Drawdown",badge(sig.t3level||"None",sig.t3level?"#ff6d00":"var(--muted)"),null,crisisBody)}</div>
-  </div>`;
+  // Strategy rules (condensed)
+  const rulesBody=`
+    <div class="log-section"><div class="log-heading">Tier 1 — Monthly DCA</div>
+      <div class="log-body">£2,500 · First business day · From 1 Jul 2026 · Never sold on signals</div></div>
+    <div class="log-section"><div class="log-heading">Tier 2 — Opportunistic</div>
+      <div class="log-body">Entry: RSI &lt; 30 AND price &gt; 40 SMA · Deploy £100k · 15-day cooldown<br>Exit: −40% stop OR below 200 SMA</div></div>
+    <div class="log-section"><div class="log-heading">Tier 3 — Crisis</div>
+      <div class="log-body">15–25% → £50k · 26–35% → £75k · 35%+ → £100k (each replaces prior)<br>Exit: −40% stop OR below 200 SMA</div></div>`;
+
+  const expTableBody=`
+    <div class="exp-row"><span class="exp-scenario">Normal market</span><span class="exp-total">£2,500/mo DCA</span></div>
+    <div class="exp-row"><span class="exp-scenario">Signal only (T2)</span><span class="exp-total">£100k + DCA</span></div>
+    <div class="exp-row"><span class="exp-scenario">Crisis only (15–25%)</span><span class="exp-total">£50k + DCA</span></div>
+    <div class="exp-row"><span class="exp-scenario">Signal + Crisis</span><span class="exp-total">£150k + DCA</span></div>
+    <div class="exp-row"><span class="exp-scenario">Full crisis (35%+)</span><span class="exp-total">£200k + DCA</span></div>`;
+
+  return `
+    <div class="grid2">
+      <div>${card("Market Data","",null,mktBody)}</div>
+      <div>${card("Live Signals","",null,sigBody)}</div>
+      <div>${card("Tier 1 Portfolio","",null,portBody)}</div>
+      <div>${card("Active Exposure","",null,expBody)}</div>
+      <div>${card("Nasdaq 100 Drawdown — Crisis Bands",badge(sig.t3level||"None",sig.t3level?"#ff6d00":"var(--muted)"),null,crisisBody)}</div>
+      <div>${card("Active Exposure — Totals","",null,expTableBody)}</div>
+      <div>${card("Strategy Rules","",null,rulesBody)}</div>
+    </div>`;
 }
 
 // ── MARKET ───────────────────────────────────────────────────────────────────
-function getLookbackRange(lb) {
-  // Map lookback to TradingView range param
-  const map = { "1Y":"12M", "2Y":"24M", "3Y":"36M", "4Y":"48M", "5Y":"60M" };
-  return map[lb] || "36M";
-}
-
-function buildTVUrl(lb) {
-  const range = getLookbackRange(lb);
-  // TradingView widget URL for LQQ3 on London Stock Exchange
-  // Weekly candles, RSI, SMA20/40/200, dark theme
-  const studies = encodeURIComponent(JSON.stringify([
-    { id: "MASimple@tv-basicstudies", inputs: { length: 40 }, styles: { plot: { color: "#00d4ff", linewidth: 2 } } },
-    { id: "MASimple@tv-basicstudies", inputs: { length: 200 }, styles: { plot: { color: "#ff6d00", linewidth: 2 } } },
-    { id: "RSI@tv-basicstudies", inputs: { length: 14 } }
-  ]));
-  return `https://www.tradingview.com/widgetembed/?symbol=LSE%3ALQQ3&interval=W&range=${range}&theme=dark&style=1&locale=en&hide_top_toolbar=0&hide_legend=0&save_image=0&studies=%5B%22MASimple%4040%22%2C%22MASimple%40200%22%2C%22RSI%40tv-basicstudies%22%5D&hide_side_toolbar=0&allow_symbol_change=0`;
-}
-
-function setLookback(lb) {
-  chartLookback = lb;
-  // Update iframe src directly without full re-render to avoid flicker
-  const iframe = document.getElementById("tvChart");
-  if (iframe) iframe.src = buildTVUrl(lb);
-  // Update button states
-  document.querySelectorAll(".lb-btn").forEach(b => {
-    b.classList.toggle("active", b.dataset.lb === lb);
-  });
-}
-
 function renderMarket() {
-  const mk = m(), sig = signals();
+  const mk=m(), sig=signals();
+  const lqq3DdColor=mk.lqq3Drawdown!=null?(mk.lqq3Drawdown>=20?"var(--red)":mk.lqq3Drawdown>=10?"var(--orange)":"var(--green)"):"var(--text)";
 
-  // Input fields card
-  let f = field("lqq3Price","LQQ3 Price",mk.lqq3Price,"£");
-  f += field("lqq3Rsi","LQQ3 RSI (14-day)",mk.lqq3Rsi,"");
-  f += field("lqq340sma","LQQ3 40-day SMA",mk.lqq340sma,"£");
-  f += field("lqq3200sma","LQQ3 200-day SMA",mk.lqq3200sma,"£");
-  f += field("nasdaqDrawdown","Nasdaq 100 Drawdown from ATH (%)",mk.nasdaqDrawdown,"");
-  f += `<p style="color:var(--muted);font-size:12px;margin-top:4px">Enter drawdown as positive number (e.g. 20 = 20% below ATH)</p>`;
+  let f=field("lqq3Price","LQQ3 Price",mk.lqq3Price,"£");
+  f+=field("lqq3Rsi","LQQ3 RSI (14-day)",mk.lqq3Rsi,"");
+  f+=field("lqq340sma","LQQ3 40-day SMA",mk.lqq340sma,"£");
+  f+=field("lqq3200sma","LQQ3 200-day SMA",mk.lqq3200sma,"£");
+  f+=field("nasdaqDrawdown","Nasdaq 100 Drawdown from ATH (%)",mk.nasdaqDrawdown,"");
+  f+=field("lqq3Drawdown","LQQ3 Drawdown from ATH (%)",mk.lqq3Drawdown,"");
+  f+=`<p style="color:var(--muted);font-size:12px;margin-top:4px">Enter drawdowns as positive numbers (e.g. 20 = 20% below ATH)</p>`;
 
-  // Readings card
-  let readings = row("LQQ3 Price",fmt(mk.lqq3Price));
-  readings += row("RSI (14)",mk.lqq3Rsi??"—",sig.rsiBelow30?"var(--green)":"var(--text)");
-  readings += row("40-day SMA",fmt(mk.lqq340sma));
-  readings += row("200-day SMA",fmt(mk.lqq3200sma),sig.below200sma?"var(--red)":"var(--green)");
-  readings += row("Nasdaq Drawdown",mk.nasdaqDrawdown!=null?fmtP(-mk.nasdaqDrawdown):"—",sig.qdd>=15?"var(--orange)":"var(--text)");
+  let readings=row("LQQ3 Price",fmt(mk.lqq3Price));
+  readings+=row("RSI (14)",mk.lqq3Rsi!==null&&mk.lqq3Rsi!==undefined?mk.lqq3Rsi.toString():"—",sig.rsiBelow30?"var(--green)":"var(--text)");
+  readings+=row("40-day SMA",fmt(mk.lqq340sma));
+  readings+=row("200-day SMA",fmt(mk.lqq3200sma),sig.below200sma?"var(--red)":"var(--green)");
+  readings+=row("Nasdaq Drawdown from ATH",mk.nasdaqDrawdown!=null?fmtP(-mk.nasdaqDrawdown):"—",sig.qdd>=15?"var(--orange)":"var(--text)");
+  readings+=row("LQQ3 Drawdown from ATH",mk.lqq3Drawdown!=null?fmtP(-mk.lqq3Drawdown):"—",lqq3DdColor);
 
-  // Lookback buttons
-  const lbs = ["1Y","2Y","3Y","4Y","5Y"];
-  const lbBtns = lbs.map(lb =>
-    `<button class="lb-btn${chartLookback===lb?" active":""}" data-lb="${lb}" onclick="setLookback('${lb}')">${lb}</button>`
-  ).join("");
-
-  // TradingView chart
-  const tvUrl = buildTVUrl(chartLookback);
-  const chartHtml = `
-    <div class="chart-container">
-      <div class="chart-toolbar">
-        <span class="chart-title">LQQ3 · Weekly · RSI · 40 SMA · 200 SMA</span>
-        <div class="lookback-group">${lbBtns}</div>
-      </div>
-      <div class="chart-iframe-wrap">
-        <iframe id="tvChart" src="${tvUrl}" allowtransparency="true" frameborder="0" scrolling="no"></iframe>
-      </div>
-      <div class="chart-note">Chart powered by TradingView · Requires internet connection · Opens TradingView on tap for full interaction</div>
-    </div>`;
-
-  return `
-    <div class="grid2" style="margin-bottom:18px">
-      <div>${card("Update Market Data","",null,f)}</div>
-      <div>${card("Current Readings","",null,readings)}</div>
-    </div>
-    ${chartHtml}`;
+  return `<div class="grid2">
+    <div>${card("Update Market Data","",null,f)}</div>
+    <div>${card("Current Readings","",null,readings)}</div>
+  </div>`;
 }
 
 // ── TIER 1 ───────────────────────────────────────────────────────────────────
 function renderTier1(sig) {
-  const t = S.tier1, td = today();
-  const ps = portfolioStats();
-  const executed = t.blotter.filter(b=>b.status==="executed");
-  const upcoming = t.blotter.filter(b=>b.status==="scheduled"&&b.date>=td);
-  const pending  = t.blotter.filter(b=>b.status==="pending"||(b.status==="scheduled"&&b.date<td));
-  const gainColor = ps.gainLoss==null?"var(--text)":ps.gainLoss>=0?"var(--green)":"var(--red)";
+  const t=S.tier1, td=today();
+  const ps=portfolioStats();
+  const executed=t.blotter.filter(b=>b.status==="executed");
+  const upcoming=t.blotter.filter(b=>b.status==="scheduled"&&b.date>=td);
+  const pending =t.blotter.filter(b=>b.status==="pending"||(b.status==="scheduled"&&b.date<td));
+  const gainColor=ps.gainLoss==null?"var(--text)":ps.gainLoss>=0?"var(--green)":"var(--red)";
 
-  // Summary
-  let sumBody = `<div class="stat-grid">
+  // Summary stats
+  let sumBody=`<div class="stat-grid">
     <div class="stat-box"><div class="stat-label">Total Invested</div><div class="stat-value">${fmt(ps.invested)}</div></div>
     <div class="stat-box"><div class="stat-label">Shares Held</div><div class="stat-value">${fmtN(ps.shares)}</div></div>
     <div class="stat-box"><div class="stat-label">Portfolio Value</div><div class="stat-value">${fmt(ps.totalValue)}</div>
@@ -533,101 +494,104 @@ function renderTier1(sig) {
   ${row("Schedule","First business day, monthly")}
   ${row("Trades executed",executed.length)}`;
 
-  // Upcoming
-  const upRows = upcoming.map(r => {
-    const idx = t.blotter.indexOf(r);
+  // Upcoming & Pending table (left panel)
+  const upRows=upcoming.map(r=>{
+    const idx=t.blotter.indexOf(r);
     return `<tr>
-      <td><input class="inline-input" type="date" value="${r.date}" onchange="updateT1Date(${idx},this.value)" style="width:120px"></td>
-      <td class="right"><input class="inline-input" type="number" value="${r.amount}" onchange="updateT1Amount(${idx},this.value)" style="width:70px;text-align:right"></td>
+      <td><input class="inline-input" type="date" value="${r.date}" onchange="updateT1Date(${idx},this.value)" style="width:118px"></td>
       <td class="right">${badge("Scheduled","var(--accent)")}</td>
       <td class="right"><button class="btn btn-sm" style="background:var(--green);color:#000" onclick="openConfirmModal('${r.date}')">Confirm</button></td>
     </tr>`;
   }).join("");
-  const upTable = `<div style="overflow-x:auto"><table class="blotter">
-    <thead><tr><th>Date</th><th class="right">Amount</th><th class="right">Status</th><th class="right">Action</th></tr></thead>
-    <tbody>${upRows}</tbody></table></div>`;
 
-  // Pending
-  let pendingHtml = "";
-  if (pending.length) {
-    const pRows = pending.map(r => {
-      const idx = t.blotter.indexOf(r);
-      return `<tr>
-        <td><input class="inline-input" type="date" value="${r.date}" onchange="updateT1Date(${idx},this.value)" style="width:120px"></td>
-        <td class="right"><input class="inline-input" type="number" value="${r.amount}" onchange="updateT1Amount(${idx},this.value)" style="width:70px;text-align:right"></td>
-        <td class="right">${badge("Overdue","var(--yellow)")}</td>
-        <td class="right"><button class="btn btn-sm" style="background:var(--green);color:#000" onclick="openConfirmModal('${r.date}')">Confirm</button></td>
-      </tr>`;
-    }).join("");
-    pendingHtml = card("Pending Execution",badge(`${pending.length} due`,"var(--yellow)"),null,
-      `<div style="overflow-x:auto"><table class="blotter">
-        <thead><tr><th>Date</th><th class="right">Amount</th><th class="right">Status</th><th class="right">Action</th></tr></thead>
-        <tbody>${pRows}</tbody></table></div>`);
-  }
+  const pRows=pending.map(r=>{
+    const idx=t.blotter.indexOf(r);
+    return `<tr>
+      <td><input class="inline-input" type="date" value="${r.date}" onchange="updateT1Date(${idx},this.value)" style="width:118px"></td>
+      <td class="right">${badge("Overdue","var(--yellow)")}</td>
+      <td class="right"><button class="btn btn-sm" style="background:var(--green);color:#000" onclick="openConfirmModal('${r.date}')">Confirm</button></td>
+    </tr>`;
+  }).join("");
 
-  // Executed
-  let execHtml = "";
-  if (executed.length) {
-    const eRows = [...executed].reverse().map(r => `<tr>
+  const scheduleTable=`<div style="overflow-x:auto"><table class="blotter">
+    <thead><tr><th>Date</th><th class="right">Status</th><th class="right">Action</th></tr></thead>
+    <tbody>${pRows}${upRows}</tbody></table></div>`;
+
+  // Executed trades table (right panel) — amount = price * shares, with individual P&L
+  const lqq3Now=m().lqq3Price;
+  const execRows=[...executed].reverse().map((r,i)=>{
+    const idx=S.tier1.blotter.indexOf(r);
+    const invested=(r.price&&r.shares)?r.price*r.shares:null;
+    const currentVal=(lqq3Now&&r.shares)?lqq3Now*r.shares:null;
+    const gl=(currentVal!=null&&invested!=null)?currentVal-invested:null;
+    const glPct=(gl!=null&&invested)?( gl/invested)*100:null;
+    const glColor=gl==null?"var(--text)":gl>=0?"var(--green)":"var(--red)";
+    return `<tr ondblclick="openEditModal(${idx})" style="cursor:pointer" title="Double-tap to edit">
       <td>${fmtD(r.date)}</td>
-      <td class="right">${fmt(r.amount)}</td>
       <td class="right">${r.price?fmt2(r.price):"—"}</td>
       <td class="right">${r.shares?fmtN(r.shares):"—"}</td>
-      <td class="right">${badge("Done","var(--green)")}</td>
-    </tr>`).join("");
-    execHtml = card("Executed Trades","",null,
-      `<div style="overflow-x:auto"><table class="blotter">
-        <thead><tr><th>Date</th><th class="right">Amount</th><th class="right">Price</th><th class="right">Shares</th><th></th></tr></thead>
-        <tbody>${eRows}</tbody></table></div>`);
-  }
+      <td class="right">${invested?fmt2(invested):"—"}</td>
+      <td class="right" style="color:${glColor}">${gl!=null?fmt2(gl):"—"}</td>
+      <td class="right" style="color:${glColor}">${glPct!=null?fmtP(glPct):"—"}</td>
+      <td class="right"><button class="btn btn-sm" style="background:var(--surfaceAlt);color:var(--muted);border:1px solid var(--border)" onclick="openEditModal(${idx})">Edit</button></td>
+    </tr>`;
+  }).join("");
 
-  return `<div class="grid2">
+  const execTable=executed.length?`<div style="overflow-x:auto"><table class="blotter">
+    <thead><tr>
+      <th>Date</th><th class="right">Price</th><th class="right">Shares</th>
+      <th class="right">Invested</th><th class="right">Gain/Loss</th><th class="right">%</th><th></th>
+    </tr></thead>
+    <tbody>${execRows}</tbody></table></div>`
+    :`<p style="color:var(--muted);font-size:13px;padding:12px 0">No executed trades yet. Confirm a scheduled trade above.</p>`;
+
+  return `
     <div style="grid-column:span 2">${card("Tier 1 — Monthly DCA",badge("Always On","var(--green)"),null,sumBody)}</div>
-    <div style="grid-column:span 2">${card("Upcoming DCA Dates",`<span style="color:var(--muted);font-size:11px">Tap date/amount to edit · Tap Confirm to log trade</span>`,null,upTable)}</div>
-    ${pending.length?`<div style="grid-column:span 2">${pendingHtml}</div>`:""}
-    ${executed.length?`<div style="grid-column:span 2">${execHtml}</div>`:""}
-  </div>`;
+    <div class="t1-split" style="grid-column:span 2">
+      <div>
+        ${card("Scheduled & Pending",`<span style="color:var(--muted);font-size:11px">Tap date to edit · Confirm to log</span>`,null,scheduleTable)}
+        ${pending.length?`<div style="margin-top:-8px;margin-bottom:16px">${badge(pending.length+" overdue","var(--yellow)")}</div>`:""}
+      </div>
+      <div>${card("Executed Trades",`<span style="color:var(--muted);font-size:11px">Double-tap row to edit</span>`,null,execTable)}</div>
+    </div>`;
 }
 
 // ── TIER 2 ───────────────────────────────────────────────────────────────────
 function renderTier2(sig) {
-  const t = S.tier2;
-  let rules = row("Notional",fmt(t.notional));
-  rules += row("Entry trigger","RSI &lt; 30 AND price &gt; 40 SMA");
-  rules += row("Cooldown","15 trading days");
-  rules += row("Stop loss","−40% from entry");
-  rules += row("Trend exit","Price below 200 SMA");
+  const t=S.tier2;
+  let rules=row("Notional",fmt(t.notional));
+  rules+=row("Entry trigger","RSI &lt; 30 AND price &gt; 40 SMA");
+  rules+=row("Cooldown","15 trading days");
+  rules+=row("Stop loss","−40% from entry");
+  rules+=row("Trend exit","Price below 200 SMA");
 
-  let posHtml = "";
-  if (!t.active) {
-    posHtml = card("Open Position","",null,
+  let posHtml="";
+  if(!t.active) {
+    posHtml=card("Open Position","",null,
       `<p style="color:${sig.t2signal?"var(--green)":"var(--muted)"};font-size:14px;margin-bottom:14px">
         ${sig.t2signal?"✓ Signal active — ready to deploy £100,000":"No signal. RSI &lt; 30 AND price above 40 SMA both required."}</p>`
-      + btn("openT2","Deploy £100,000 at Current Price","accent",true,!m().lqq3Price)
-      + (!m().lqq3Price?`<p style="color:var(--muted);font-size:12px;margin-top:8px">Set LQQ3 price in Market tab first</p>`:""));
+      +btn("openT2","Deploy £100,000 at Current Price","accent",true,!m().lqq3Price)
+      +(!m().lqq3Price?`<p style="color:var(--muted);font-size:12px;margin-top:8px">Set LQQ3 price in Market tab first</p>`:""));
   } else {
-    const exitAlert = (sig.t2stopHit||sig.t2smaHit)
-      ? `<div class="alert" style="background:#ff444422;border:1px solid #ff444444">
-          <span style="color:var(--red);font-weight:700;font-size:14px">⚠ Exit: ${sig.t2stopHit?"40% stop hit":"Price below 200 SMA"}</span></div>` : "";
-    let posBody = row("Entry price",fmt(t.entryPrice));
-    posBody += row("Entry date",fmtD(t.entryDate));
-    posBody += row("Deployed",fmt(t.notional));
-    posBody += row("Stop price (−40%)",fmt(t.stopPrice),"var(--red)");
-    posBody += row("Current P&L",sig.t2pct!=null?fmtP(sig.t2pct):"—",
+    const exitAlert=(sig.t2stopHit||sig.t2smaHit)?`<div class="alert" style="background:#ff444422;border:1px solid #ff444444">
+      <span style="color:var(--red);font-weight:700;font-size:14px">⚠ Exit: ${sig.t2stopHit?"40% stop hit":"Price below 200 SMA"}</span></div>`:"";
+    let posBody=row("Entry price",fmt(t.entryPrice));
+    posBody+=row("Entry date",fmtD(t.entryDate));
+    posBody+=row("Deployed",fmt(t.notional));
+    posBody+=row("Stop price (−40%)",fmt(t.stopPrice),"var(--red)");
+    posBody+=row("Current P&L",sig.t2pct!=null?fmtP(sig.t2pct):"—",
       sig.t2pct==null?"var(--text)":sig.t2pct>=0?"var(--green)":"var(--red)");
-    posBody += exitAlert + btn("closeT2","Close Position & Reset","red",true,false);
-    posHtml = card("Active Position","",sig.t2stopHit||sig.t2smaHit?"#ff4444":"var(--accent)",posBody);
+    posBody+=exitAlert+btn("closeT2","Close Position & Reset","red",true,false);
+    posHtml=card("Active Position","",sig.t2stopHit||sig.t2smaHit?"#ff4444":"var(--accent)",posBody);
   }
 
-  let blotterHtml = "";
-  if (t.blotter.length) {
-    blotterHtml = card("Trade Blotter","",null,`<div style="overflow-x:auto"><table class="blotter">
+  let blotterHtml="";
+  if(t.blotter.length) {
+    blotterHtml=card("Trade Blotter","",null,`<div style="overflow-x:auto"><table class="blotter">
       <thead><tr><th>Date</th><th>Type</th><th class="right">Amount</th><th class="right">Price</th><th>Notes</th></tr></thead>
       <tbody>${t.blotter.map(r=>`<tr>
-        <td>${fmtD(r.date)}</td>
-        <td>${badge(r.type,r.type==="BUY"?"var(--green)":"var(--red)")}</td>
-        <td class="right">${fmt(r.amount)}</td>
-        <td class="right">${r.price?fmt2(r.price):"—"}</td>
+        <td>${fmtD(r.date)}</td><td>${badge(r.type,r.type==="BUY"?"var(--green)":"var(--red)")}</td>
+        <td class="right">${fmt(r.amount)}</td><td class="right">${r.price?fmt2(r.price):"—"}</td>
         <td style="color:var(--muted);font-size:11px">${r.notes||""}</td>
       </tr>`).join("")}</tbody></table></div>`);
   }
@@ -641,62 +605,58 @@ function renderTier2(sig) {
 
 // ── TIER 3 ───────────────────────────────────────────────────────────────────
 function renderTier3(sig) {
-  const t = S.tier3;
-  let rules = row("Notional",fmt(t.notional));
-  rules += row("Trigger","Nasdaq 100 drawdown from ATH");
-  rules += `<div style="margin:12px 0">`;
+  const t=S.tier3;
+  let rules=row("Notional",fmt(t.notional));
+  rules+=row("Trigger","Nasdaq 100 drawdown from ATH");
+  rules+=`<div style="margin:12px 0">`;
   [{r:"15–25%",d:"£50,000"},{r:"26–35%",d:"£75,000"},{r:"35%+",d:"£100,000"}].forEach(b=>{
-    const a = t.activeLevel===b.r;
-    rules += `<div class="band" style="background:${a?"#ff6d0022":"var(--surfaceAlt)"};border-color:${a?"#ff6d0066":"var(--border)"}">
+    const a=t.activeLevel===b.r;
+    rules+=`<div class="band" style="background:${a?"#ff6d0022":"var(--surfaceAlt)"};border-color:${a?"#ff6d0066":"var(--border)"}">
       <span class="band-label" style="color:var(--text)">${b.r} drawdown</span>
       <span class="band-value" style="color:var(--orange)">${b.d}</span></div>`;
   });
-  rules += `</div>`;
-  rules += row("Stop loss","−40% from tranche entry");
-  rules += row("Trend exit","LQQ3 below 200 SMA");
-  rules += `<p style="color:var(--muted);font-size:12px;margin-top:8px">Each new threshold replaces the prior position</p>`;
+  rules+=`</div>`;
+  rules+=row("Stop loss","−40% from tranche entry");
+  rules+=row("Trend exit","LQQ3 below 200 SMA");
+  rules+=`<p style="color:var(--muted);font-size:12px;margin-top:8px">Each new threshold replaces the prior position</p>`;
 
-  let posHtml = "";
-  if (!t.activeLevel) {
-    const msg = sig.t3level
-      ? `✓ Nasdaq at ${fmtP(-sig.qdd)} — ${sig.t3level} threshold active. Ready to deploy ${fmt(sig.t3deploy)}.`
-      : `No crisis threshold. Nasdaq must fall at least 15% from ATH.${m().nasdaqDrawdown!=null?" Current: "+fmtP(-m().nasdaqDrawdown):""}`;
-    posHtml = card("Deploy Position","",null,
+  let posHtml="";
+  if(!t.activeLevel) {
+    const msg=sig.t3level
+      ?`✓ Nasdaq at ${fmtP(-sig.qdd)} — ${sig.t3level} threshold active. Ready to deploy ${fmt(sig.t3deploy)}.`
+      :`No crisis threshold. Nasdaq must fall at least 15% from ATH.${m().nasdaqDrawdown!=null?" Current: "+fmtP(-m().nasdaqDrawdown):""}`;
+    posHtml=card("Deploy Position","",null,
       `<p style="color:${sig.t3level?"var(--orange)":"var(--muted)"};font-size:14px;margin-bottom:14px">${msg}</p>`
-      + btn("openT3",sig.t3level?`Deploy ${fmt(sig.t3deploy)}`:"No Signal","orange",true,!sig.t3level||!m().lqq3Price)
-      + (!m().lqq3Price?`<p style="color:var(--muted);font-size:12px;margin-top:8px">Set LQQ3 price in Market tab first</p>`:""));
+      +btn("openT3",sig.t3level?`Deploy ${fmt(sig.t3deploy)}`:"No Signal","orange",true,!sig.t3level||!m().lqq3Price)
+      +(!m().lqq3Price?`<p style="color:var(--muted);font-size:12px;margin-top:8px">Set LQQ3 price in Market tab first</p>`:""));
   } else {
-    const exitAlert = (sig.t3stopHit||sig.t3smaHit)
-      ? `<div class="alert" style="background:#ff444422;border:1px solid #ff444444">
-          <span style="color:var(--red);font-weight:700;font-size:14px">⚠ Exit: ${sig.t3stopHit?"40% stop hit":"Price below 200 SMA"}</span></div>` : "";
-    const upgradeAlert = sig.t3level&&sig.t3level!==t.activeLevel
-      ? `<div class="alert" style="background:#ff6d0022;border:1px solid #ff6d0044">
-          <span style="color:var(--orange);font-weight:700;font-size:14px">↑ New threshold: ${sig.t3level} — upgrade to ${fmt(sig.t3deploy)}</span></div>` : "";
-    let posBody = row("Level",t.activeLevel,"var(--orange)");
-    posBody += row("Deployed",fmt(t.deployedAmount));
-    posBody += row("Entry price",fmt(t.entryPrice));
-    posBody += row("Entry date",fmtD(t.entryDate));
-    posBody += row("Stop price (−40%)",fmt(t.stopPrice),"var(--red)");
-    posBody += row("Current P&L",sig.t3pct!=null?fmtP(sig.t3pct):"—",
+    const exitAlert=(sig.t3stopHit||sig.t3smaHit)?`<div class="alert" style="background:#ff444422;border:1px solid #ff444444">
+      <span style="color:var(--red);font-weight:700;font-size:14px">⚠ Exit: ${sig.t3stopHit?"40% stop hit":"Price below 200 SMA"}</span></div>`:"";
+    const upgradeAlert=sig.t3level&&sig.t3level!==t.activeLevel?`<div class="alert" style="background:#ff6d0022;border:1px solid #ff6d0044">
+      <span style="color:var(--orange);font-weight:700;font-size:14px">↑ New threshold: ${sig.t3level} — upgrade to ${fmt(sig.t3deploy)}</span></div>`:"";
+    let posBody=row("Level",t.activeLevel,"var(--orange)");
+    posBody+=row("Deployed",fmt(t.deployedAmount));
+    posBody+=row("Entry price",fmt(t.entryPrice));
+    posBody+=row("Entry date",fmtD(t.entryDate));
+    posBody+=row("Stop price (−40%)",fmt(t.stopPrice),"var(--red)");
+    posBody+=row("Current P&L",sig.t3pct!=null?fmtP(sig.t3pct):"—",
       sig.t3pct==null?"var(--text)":sig.t3pct>=0?"var(--green)":"var(--red)");
-    posBody += exitAlert + upgradeAlert;
-    if (sig.t3level&&sig.t3level!==t.activeLevel)
-      posBody += `<div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">`
+    posBody+=exitAlert+upgradeAlert;
+    if(sig.t3level&&sig.t3level!==t.activeLevel)
+      posBody+=`<div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">`
         +btn("upgradeT3",`Upgrade to ${fmt(sig.t3deploy)}`,"orange",false,false)
         +btn("closeT3","Close & Reset","red",false,false)+`</div>`;
-    else posBody += btn("closeT3","Close & Reset","red",true,false);
-    posHtml = card("Active Position","",sig.t3stopHit||sig.t3smaHit?"#ff4444":"var(--orange)",posBody);
+    else posBody+=btn("closeT3","Close & Reset","red",true,false);
+    posHtml=card("Active Position","",sig.t3stopHit||sig.t3smaHit?"#ff4444":"var(--orange)",posBody);
   }
 
-  let blotterHtml = "";
-  if (t.blotter.length) {
-    blotterHtml = card("Trade Blotter","",null,`<div style="overflow-x:auto"><table class="blotter">
+  let blotterHtml="";
+  if(t.blotter.length) {
+    blotterHtml=card("Trade Blotter","",null,`<div style="overflow-x:auto"><table class="blotter">
       <thead><tr><th>Date</th><th>Type</th><th class="right">Amount</th><th class="right">Price</th><th>Notes</th></tr></thead>
       <tbody>${t.blotter.map(r=>`<tr>
-        <td>${fmtD(r.date)}</td>
-        <td>${badge(r.type,r.type==="BUY"?"var(--green)":"var(--red)")}</td>
-        <td class="right">${fmt(r.amount)}</td>
-        <td class="right">${r.price?fmt2(r.price):"—"}</td>
+        <td>${fmtD(r.date)}</td><td>${badge(r.type,r.type==="BUY"?"var(--green)":"var(--red)")}</td>
+        <td class="right">${fmt(r.amount)}</td><td class="right">${r.price?fmt2(r.price):"—"}</td>
         <td style="color:var(--muted);font-size:11px">${r.notes||""}</td>
       </tr>`).join("")}</tbody></table></div>`);
   }
@@ -708,85 +668,75 @@ function renderTier3(sig) {
   </div>`;
 }
 
-// ── LOG ──────────────────────────────────────────────────────────────────────
+// ── LOG (kept minimal — rules now on dashboard) ───────────────────────────────
 function renderLog() {
   return `<div class="grid2">
-    <div>
-      <div class="card">
-        <div class="card-header"><span class="card-title">Strategy Rules</span></div>
-        <div class="log-section"><div class="log-heading">Tier 1 — Monthly DCA</div>
-          <div class="log-body">£2,500 fixed · First business day · Starting 1 Jul 2026 · Never sold on signals</div></div>
-        <div class="log-section"><div class="log-heading">Tier 2 — Opportunistic</div>
-          <div class="log-body">Entry: LQQ3 RSI &lt; 30 AND price &gt; 40-day SMA · Deploy £100k full notional · 15-day cooldown<br>Exit: −40% drawdown from entry OR price below 200-day SMA</div></div>
-        <div class="log-section"><div class="log-heading">Tier 3 — Crisis Deployment</div>
-          <div class="log-body">15–25% Nasdaq drawdown → £50,000<br>26–35% Nasdaq drawdown → £75,000 (replaces prior)<br>35%+ Nasdaq drawdown → £100,000 (replaces prior)<br>Exit: −40% drawdown OR price below 200-day SMA</div></div>
-      </div>
-    </div>
-    <div>
-      <div class="card">
-        <div class="card-header"><span class="card-title">Maximum Simultaneous Exposure</span></div>
-        <div class="exp-row"><span class="exp-scenario">Normal market</span><span class="exp-total">£2,500/mo DCA</span></div>
-        <div class="exp-row"><span class="exp-scenario">Signal only (Tier 2)</span><span class="exp-total">£100k + DCA</span></div>
-        <div class="exp-row"><span class="exp-scenario">Crisis only (15–25%)</span><span class="exp-total">£50k + DCA</span></div>
-        <div class="exp-row"><span class="exp-scenario">Signal + Crisis</span><span class="exp-total">£150k + DCA</span></div>
-        <div class="exp-row"><span class="exp-scenario">Full crisis (35%+)</span><span class="exp-total">£200k + DCA</span></div>
-      </div>
-    </div>
+    <div><div class="card">
+      <div class="card-header"><span class="card-title">Strategy Rules</span></div>
+      <div class="log-section"><div class="log-heading">Tier 1 — Monthly DCA</div>
+        <div class="log-body">£2,500 fixed · First business day · Starting 1 Jul 2026 · Never sold on signals</div></div>
+      <div class="log-section"><div class="log-heading">Tier 2 — Opportunistic</div>
+        <div class="log-body">Entry: LQQ3 RSI &lt; 30 AND price &gt; 40-day SMA · Deploy £100k full notional · 15-day cooldown<br>Exit: −40% drawdown from entry OR price below 200-day SMA</div></div>
+      <div class="log-section"><div class="log-heading">Tier 3 — Crisis Deployment</div>
+        <div class="log-body">15–25% Nasdaq drawdown → £50,000<br>26–35% Nasdaq drawdown → £75,000 (replaces prior)<br>35%+ Nasdaq drawdown → £100,000 (replaces prior)<br>Exit: −40% drawdown OR price below 200-day SMA</div></div>
+    </div></div>
+    <div><div class="card">
+      <div class="card-header"><span class="card-title">Maximum Simultaneous Exposure</span></div>
+      <div class="exp-row"><span class="exp-scenario">Normal market</span><span class="exp-total">£2,500/mo DCA</span></div>
+      <div class="exp-row"><span class="exp-scenario">Signal only (Tier 2)</span><span class="exp-total">£100k + DCA</span></div>
+      <div class="exp-row"><span class="exp-scenario">Crisis only (15–25%)</span><span class="exp-total">£50k + DCA</span></div>
+      <div class="exp-row"><span class="exp-scenario">Signal + Crisis</span><span class="exp-total">£150k + DCA</span></div>
+      <div class="exp-row"><span class="exp-scenario">Full crisis (35%+)</span><span class="exp-total">£200k + DCA</span></div>
+    </div></div>
   </div>`;
 }
 
-// ── MARKET / T1 UPDATES ──────────────────────────────────────────────────────
-function updateMarket(id, val) {
-  const parsed = val===""||val==null||isNaN(val)?null:parseFloat(val);
-  if (S.market[id] === parsed) return; // no change, don't re-render
-  S.market[id] = parsed;
-  save(); render();
+// ── UPDATES ───────────────────────────────────────────────────────────────────
+function updateMarket(id,val) {
+  const parsed=val===""||val==null||isNaN(val)?null:parseFloat(val);
+  if(S.market[id]===parsed) return;
+  S.market[id]=parsed; save(); render();
 }
-function updateT1Date(idx, val) {
-  S.tier1.blotter[idx].date = val; save(); render();
-}
-function updateT1Amount(idx, val) {
-  S.tier1.blotter[idx].amount = parseFloat(val)||S.tier1.monthlyAmount; save(); render();
-}
+function updateT1Date(idx,val) { S.tier1.blotter[idx].date=val; save(); render(); }
+function updateT1Amount(idx,val) { S.tier1.blotter[idx].amount=parseFloat(val)||S.tier1.monthlyAmount; save(); render(); }
 
-// ── T2 / T3 ACTIONS ──────────────────────────────────────────────────────────
+// ── T2/T3 ACTIONS ─────────────────────────────────────────────────────────────
 function openT2() {
-  if (!m().lqq3Price) return;
-  S.tier2 = { ...S.tier2, active:true, entryPrice:m().lqq3Price, entryDate:today(), stopPrice:+(m().lqq3Price*0.6).toFixed(2) };
+  if(!m().lqq3Price) return;
+  S.tier2={...S.tier2,active:true,entryPrice:m().lqq3Price,entryDate:today(),stopPrice:+(m().lqq3Price*0.6).toFixed(2)};
   S.tier2.blotter.unshift({date:today(),type:"BUY",amount:S.tier2.notional,price:m().lqq3Price,notes:"Signal: RSI<30 + above 40 SMA"});
   save(); render();
 }
 function closeT2() {
-  const sig = signals();
-  const reason = sig.t2stopHit?"Stop loss −40%":sig.t2smaHit?"Below 200 SMA":"Manual close";
+  const sig=signals();
+  const reason=sig.t2stopHit?"Stop loss −40%":sig.t2smaHit?"Below 200 SMA":"Manual close";
   S.tier2.blotter.unshift({date:today(),type:"SELL",amount:S.tier2.notional,price:m().lqq3Price,notes:reason});
-  S.tier2 = { ...S.tier2, active:false, entryPrice:null, entryDate:null, stopPrice:null };
+  S.tier2={...S.tier2,active:false,entryPrice:null,entryDate:null,stopPrice:null};
   save(); render();
 }
 function openT3() {
-  const sig = signals();
-  if (!m().lqq3Price||!sig.t3level) return;
-  S.tier3 = { ...S.tier3, activeLevel:sig.t3level, deployedAmount:sig.t3deploy,
-    entryPrice:m().lqq3Price, entryDate:today(), stopPrice:+(m().lqq3Price*0.6).toFixed(2) };
+  const sig=signals();
+  if(!m().lqq3Price||!sig.t3level) return;
+  S.tier3={...S.tier3,activeLevel:sig.t3level,deployedAmount:sig.t3deploy,
+    entryPrice:m().lqq3Price,entryDate:today(),stopPrice:+(m().lqq3Price*0.6).toFixed(2)};
   S.tier3.blotter.unshift({date:today(),type:"BUY",amount:sig.t3deploy,price:m().lqq3Price,notes:`Crisis: ${sig.t3level} — Nasdaq −${sig.qdd}%`});
   save(); render();
 }
 function closeT3() {
-  const sig = signals();
-  const reason = sig.t3stopHit?"Stop loss −40%":sig.t3smaHit?"Below 200 SMA":"Manual close";
+  const sig=signals();
+  const reason=sig.t3stopHit?"Stop loss −40%":sig.t3smaHit?"Below 200 SMA":"Manual close";
   S.tier3.blotter.unshift({date:today(),type:"SELL",amount:S.tier3.deployedAmount,price:m().lqq3Price,notes:reason});
-  S.tier3 = { ...S.tier3, activeLevel:null, entryPrice:null, entryDate:null, deployedAmount:null, stopPrice:null };
+  S.tier3={...S.tier3,activeLevel:null,entryPrice:null,entryDate:null,deployedAmount:null,stopPrice:null};
   save(); render();
 }
 
-// ── EVENT BINDING ────────────────────────────────────────────────────────────
+// ── EVENT BINDING ─────────────────────────────────────────────────────────────
 function bindEvents(sig) {
-  const bind = (id,fn) => { const el=document.getElementById(id); if(el) el.onclick=fn; };
+  const bind=(id,fn)=>{const el=document.getElementById(id);if(el)el.onclick=fn;};
   bind("openT2",openT2); bind("closeT2",closeT2);
   bind("openT3",openT3); bind("closeT3",closeT3); bind("upgradeT3",openT3);
 }
 
-// ── INIT ─────────────────────────────────────────────────────────────────────
 render();
 </script>
 </body>
